@@ -26,6 +26,7 @@ bin/msm_irqbalance
 bin/radish
 bin/ssr_setup
 bin/subsystem_ramdump
+bin/surfaceflinger
 bin/tftp_server
 bin/time_daemon
 bin/wfdservice
@@ -97,6 +98,13 @@ framework/qcnvitems.jar
 framework/qcrilhook.jar
 framework/qti-telephony-common.jar
 framework/tcmclient.jar
+framework/qcom.fmradio.jar
+framework/QtiTelephonyServicelibrary.jar
+framework/com.qualcomm.location.vzw_library.jar
+framework/com.qrd.wappush.jar
+framework/imscmlibrary.jar
+framework/org.simalliance.openmobileapi.jar
+framework/org.apache.http.legacy.jar
 lib64/libloc_eng.so
 lib64/hw/sensors.msm8952.so
 lib64/hw/lights.msm8952.so
@@ -128,6 +136,8 @@ lib/libarcsoft_panorama_burstcapture.so
 lib/libloc_core.so
 lib/libmputility.so
 lib/libarcsoft_face_detection.so
+lib/libsurfaceflinger.so
+lib/libc.so
 vendor/lib64/libmmwfdinterface.so
 lib/libarcsoft_smart_denoise.so
 lib/libcamera_letv_algo.so
