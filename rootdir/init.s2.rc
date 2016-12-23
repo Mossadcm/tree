@@ -462,3 +462,18 @@ on property:service.tinyproxy.enable=1
 # Used to set USB configuration at boot and to switch the configuration
 on property:sys.boot_completed=1 && property:persist.sys.usb.debug_functions=*
     setprop sys.usb.config ${persist.sys.usb.debug_functions}
+
+# Begin VR
+service vrserver /system/bin/vrserver
+    class main
+    user root
+    group root
+    restart
+# End
+#start backup recover service
+service transfer /system/bin/tr_app_data_service
+    class main
+    socket transfer stream 0660 root sdcard_rw
+    user root
+# end
+

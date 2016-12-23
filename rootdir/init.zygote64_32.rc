@@ -1,0 +1,20 @@
+service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-system-server --socket-name=zygote
+    class main
+    socket zygote stream 660 root system
+    onrestart write /sys/android_power/request_state wake
+    onrestart write /sys/power/state on
+    onrestart restart media
+    onrestart restart netd
+    # < LAFITE-1164 zhaodonghong 20160215 begin
+    onrestart restart fingerprintd
+    onrestart restart gx_fpd
+    # LAFITE-1164 zhaodonghong 20160215 end >
+    # < LAFITE-183 sunyaxi 20151225 begin
+    onrestart restart br-z
+    # LAFITE-183 sunyaxi 20151225 end >
+
+service zygote_secondary /system/bin/app_process32 -Xzygote /system/bin --zygote --socket-name=zygote_secondary
+    class main
+    socket zygote_secondary stream 660 root system
+    onrestart restart zygote
+    writepid /dev/cpuset/foreground/tasks

@@ -484,6 +484,7 @@ case "$product_name" in
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/ct.mbn /data/misc/radio/modem_config/mcfg_sw
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/cu.mbn /data/misc/radio/modem_config/mcfg_sw
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/row.mbn /data/misc/radio/modem_config/mcfg_sw
+    cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/3hk.mbn /data/misc/radio/modem_config/mcfg_sw
     ;;
     "Le2_NA")
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/att.mbn /data/misc/radio/modem_config/mcfg_sw
@@ -495,6 +496,7 @@ case "$product_name" in
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/row.mbn /data/misc/radio/modem_config/mcfg_sw
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/cmcc.mbn /data/misc/radio/modem_config/mcfg_sw
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/cu.mbn /data/misc/radio/modem_config/mcfg_sw
+    cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/3hk.mbn /data/misc/radio/modem_config/mcfg_sw
     ;;
     *)
     cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/row.mbn /data/misc/radio/modem_config/mcfg_sw
@@ -503,5 +505,20 @@ esac
 chmod 770 /data/misc/radio/modem_config/mcfg_sw/*
 chown -hR radio.radio /data/misc/radio/modem_config
 chown -hR radio.radio /data/misc/radio/modem_config/mcfg_sw
+
+if [ -f /data/misc/radio/ver_info.txt ]; then
+    prev_version_info=`cat /data/misc/radio/ver_info.txt`
+else
+    prev_version_info=""
+fi
+
+cur_version_info=`cat /firmware/verinfo/ver_info.txt`
+if [ ! -f /firmware/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
+    cp /firmware/verinfo/ver_info.txt /data/misc/radio/ver_info.txt
+    chown radio.radio /data/misc/radio/ver_info.txt
+fi
+cp /firmware/image/modem_pr/mbn_ota.txt /data/misc/radio/modem_config
+chown radio.radio /data/misc/radio/modem_config/mbn_ota.txt
+
 echo 1 > /data/misc/radio/copy_complete
 # LAFITE-479  yuyang 20160126 end >
