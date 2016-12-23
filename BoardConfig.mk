@@ -211,5 +211,9 @@ WIFI_DRIVER_FW_PATH_STA     := "sta"
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME     := "wlan"
 
+# Ramdisk
+TARGET_PROVIDES_INIT := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
+
 # inherit from the proprietary version
 -include vendor/leeco/s2/BoardConfigVendor.mk
